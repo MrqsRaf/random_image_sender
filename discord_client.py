@@ -13,7 +13,7 @@ with open("env.json", "r") as env:
 
 # set our environement variables
 IMG_FOLDER = ENV["images_folder"]
-
+IMG_FOLDER_FOR_HUGO =  ENV["hugo_images_folder"]
 COLORS = {
     "BLACK": "\033[30m",
     "RED": "\033[31m",
@@ -132,11 +132,18 @@ async def random_image(context):
         context.message.channel.is_nsfw()
     ):
         try:
-            msg_content = {
+            if context.user.id == "hugzzzzzz":
+                msg_content = {
                 "file": discord.File(
-                    IMG_FOLDER + "/{}".format(rdm(IMG_FOLDER))
+                    IMG_FOLDER_FOR_HUGO + "/{}".format(rdm(IMG_FOLDER))
                 )
             }
+            else:
+                msg_content = {
+                    "file": discord.File(
+                        IMG_FOLDER + "/{}".format(rdm(IMG_FOLDER))
+                    )
+                }
         except FileNotFoundError:
             DISPLAY_ERROR("The folder `{}` was not found".format(IMG_FOLDER))
             msg_content = {
