@@ -13,7 +13,7 @@ with open("env.json", "r") as env:
 
 # set our environement variables
 IMG_FOLDER = ENV["images_folder"]
-IMG_FOLDER_FOR_HUGO =  ENV["hugo_images_folder"]
+IMG_FOLDER_FOR_HUGO = ENV["hugo_images_folder"]
 COLORS = {
     "BLACK": "\033[30m",
     "RED": "\033[31m",
@@ -127,15 +127,16 @@ bot = discord.ext.commands.Bot(
 )
 async def random_image(context):
     log(context)
+    user_id = context.author.id
     if (
         str(context.message.channel.type) == "private" or
         context.message.channel.is_nsfw()
     ):
         try:
-            if context.user.id == "hugzzzzzz":
+            if user_id == 617778238558830593:
                 msg_content = {
                 "file": discord.File(
-                    IMG_FOLDER_FOR_HUGO + "/{}".format(rdm(IMG_FOLDER))
+                    IMG_FOLDER_FOR_HUGO + "/{}".format(rdm(IMG_FOLDER_FOR_HUGO))
                 )
             }
             else:
